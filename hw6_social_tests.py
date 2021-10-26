@@ -86,8 +86,8 @@ def week1Tests():
     # testParseName()
     # testParsePosition()
     # testParseState()
-    testFindHashtags()
-    # testGetRegionFromState()
+    # testFindHashtags()
+    testGetRegionFromState()
     # testAddColumns()
 
 def runWeek1():
