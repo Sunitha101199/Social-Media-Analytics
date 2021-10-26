@@ -39,7 +39,12 @@ Parameters: str
 Returns: str
 '''
 def parseName(fromString):
-    return
+    s = fromString.split()
+    if '(' in s[3]:
+        s1 = str(s[1])+" "+str(s[2])
+    else:
+        s1 = str(s[1])
+    return s1
 
 
 '''
@@ -49,7 +54,9 @@ Parameters: str
 Returns: str
 '''
 def parsePosition(fromString):
-    return
+    s = str(fromString.split("(")[1])
+    s1 = str(s.split()[0])
+    return s1
 
 
 '''
@@ -59,7 +66,13 @@ Parameters: str
 Returns: str
 '''
 def parseState(fromString):
-    return
+    s = str(fromString.split("(")[1])
+    s1 = s.split()
+    if len(s1)>3:
+        s2 = str(s1[2])+" "+str(s1[3])
+    else:
+        s2 = str(s1[2])
+    return str(s2.split(")")[0])
 
 
 '''

@@ -82,10 +82,10 @@ def testAddColumns():
     print("... done!")
 
 def week1Tests():
-    testMakeDataFrame()
-    # testParseName()
-    # testParsePosition()
-    # testParseState()
+    # testMakeDataFrame()
+    testParseName()
+    testParsePosition()
+    testParseState()
     # testFindHashtags()
     # testGetRegionFromState()
     # testAddColumns()
