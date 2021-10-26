@@ -82,7 +82,27 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return
+    s = message.split()
+    s1 = [i for i in s if '#' in i]
+    for i in s1:
+        if i.count("#")>1:
+            char ="#"
+            temp = [char+e for e in i.split(char) if e]
+            return temp
+    for i in range(len(s1)):
+        if ":" in s1[i]:
+            s1[i]=s1[i].split(":")[0]
+        if "!" in s1[i]:
+            s1[i]=s1[i].split("!")[0]
+        if "?" in s1[i]:
+            s1[i]=s1[i].split("?")[0]
+        if "," in s1[i]:
+            s1[i]= s1[i].split(",")[0]
+        if "." in s1[i]:
+            s1[i]=s1[i].split(".")[0]
+        if "#" in s1[i]:
+            s1[i] = "#"+s1[i].split("#")[1]
+    return s1
 
 
 '''
