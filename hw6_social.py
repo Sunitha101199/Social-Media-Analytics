@@ -185,7 +185,14 @@ Parameters: dataframe ; str
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def getDataForRegion(data, colName):
-    return
+    dictionary = {}
+    for index,row in data.iterrows():
+        if data['region'][index] not in dictionary:
+            dictionary[data['region'][index]]={}
+        if row[colName] not in dictionary[data['region'][index]]:
+            dictionary[data['region'][index]][row[colName]]=0
+        dictionary[data['region'][index]][row[colName]]+=1   
+    return dictionary
 
 
 '''
@@ -318,10 +325,10 @@ def scatterPlot(xValues, yValues, labels, title):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    # test.week1Tests()
-    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek1()
+    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    test.week1Tests()
+    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek1()
 
     ## Uncomment these for Week 2 ##
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
