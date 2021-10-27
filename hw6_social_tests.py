@@ -86,9 +86,9 @@ def week1Tests():
     # testParseName()
     # testParsePosition()
     # testParseState()
-    testFindHashtags()
+    # testFindHashtags()
     # testGetRegionFromState()
-    # testAddColumns()
+    testAddColumns()
 
 def runWeek1():
     df = makeDataFrame("data/politicaldata.csv")

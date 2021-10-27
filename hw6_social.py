@@ -110,9 +110,10 @@ def addColumns(data, stateDf):
         label = row["label"]
         names.append(parseName(label))
         positions.append(parsePosition(label))
-        states.append(parseState(label))
-        regions.append(getRegionFromState(stateDf, states))
-        hashtags.append(row["text"])
+        state=parseState(label)
+        states.append(state)
+        regions.append(getRegionFromState(stateDf, state))
+        hashtags.append(findHashtags(row["text"]))
     data['name']=names
     data['position']=positions
     data['state']=states
