@@ -8,6 +8,7 @@ import matplotlib
 import pandas
 import nltk
 import hw6_social_tests as test
+import re
 
 project = "Social" # don't edit this
 
@@ -82,27 +83,8 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    s = message.split()
-    s1 = [i for i in s if '#' in i]
-    for i in s1:
-        if i.count("#")>1:
-            char ="#"
-            temp = [char+e for e in i.split(char) if e]
-            return temp
-    for i in range(len(s1)):
-        if ":" in s1[i]:
-            s1[i]=s1[i].split(":")[0]
-        if "!" in s1[i]:
-            s1[i]=s1[i].split("!")[0]
-        if "?" in s1[i]:
-            s1[i]=s1[i].split("?")[0]
-        if "," in s1[i]:
-            s1[i]= s1[i].split(",")[0]
-        if "." in s1[i]:
-            s1[i]=s1[i].split(".")[0]
-        if "#" in s1[i]:
-            s1[i] = "#"+s1[i].split("#")[1]
-    return s1
+    s = re.findall("#\w+",message)
+    return s
 
 
 '''
@@ -113,7 +95,7 @@ Returns: str
 '''
 def getRegionFromState(stateDf, state):
     row = stateDf.loc[stateDf['state'] == state, 'region']
-    return row.values[0]
+    return str(row.values[0])
 
 
 '''
@@ -123,6 +105,19 @@ Parameters: dataframe ; dataframe
 Returns: None
 '''
 def addColumns(data, stateDf):
+    names, positions, states, regions, hashtags = [],[],[],[],[]
+    for index,row in data.iterrows():
+        label = row["label"]
+        names.append(parseName(label))
+        positions.append(parsePosition(label))
+        states.append(parseState(label))
+        regions.append(getRegionFromState(stateDf, states))
+        hashtags.append(row["text"])
+    data['name']=names
+    data['position']=positions
+    data['state']=states
+    data['region']=regions
+    data['hashtags']=hashtags
     return
 
 
