@@ -82,12 +82,12 @@ def testAddColumns():
     print("... done!")
 
 def week1Tests():
-    # testMakeDataFrame()
-    # testParseName()
-    # testParsePosition()
-    # testParseState()
-    # testFindHashtags()
-    # testGetRegionFromState()
+    testMakeDataFrame()
+    testParseName()
+    testParsePosition()
+    testParseState()
+    testFindHashtags()
+    testGetRegionFromState()
     testAddColumns()
 
 def runWeek1():
@@ -198,7 +198,6 @@ def testGetHashtagSentiment(df):
 def week2Tests():
     testFindSentiment()
     testAddSentimentColumn()
-
     df = makeDataFrame("data/politicaldata.csv")
     stateDf = makeDataFrame("data/statemappings.csv")
     addColumns(df, stateDf)
