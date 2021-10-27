@@ -3,6 +3,7 @@ Social Media Analytics Project
 Name:
 Roll Number:
 """
+from nltk.probability import DictionaryConditionalProbDist
 import numpy
 import matplotlib
 import pandas
@@ -40,12 +41,12 @@ Parameters: str
 Returns: str
 '''
 def parseName(fromString):
-    s = fromString.split()
-    if '(' in s[3]:
-        s1 = str(s[1])+" "+str(s[2])
+    list = fromString.split()
+    if '(' in list[3]:
+        name = str(list[1])+" "+str(list[2])
     else:
-        s1 = str(s[1])
-    return s1
+        name = str(list[1])
+    return name
 
 
 '''
@@ -55,9 +56,9 @@ Parameters: str
 Returns: str
 '''
 def parsePosition(fromString):
-    s = str(fromString.split("(")[1])
-    s1 = str(s.split()[0])
-    return s1
+    string = str(fromString.split("(")[1])
+    position = str(string.split()[0])
+    return position
 
 
 '''
@@ -67,13 +68,13 @@ Parameters: str
 Returns: str
 '''
 def parseState(fromString):
-    s = str(fromString.split("(")[1])
-    s1 = s.split()
-    if len(s1)>3:
-        s2 = str(s1[2])+" "+str(s1[3])
+    string = str(fromString.split("(")[1])
+    list = string.split()
+    if len(list)>3:
+        state = str(list[2])+" "+str(list[3])
     else:
-        s2 = str(s1[2])
-    return str(s2.split(")")[0])
+        state = str(list[2])
+    return str(state.split(")")[0])
 
 
 '''
@@ -83,8 +84,8 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    s = re.findall("#\w+",message)
-    return s
+    string = re.findall("#\w+",message)
+    return string
 
 
 '''
@@ -162,7 +163,19 @@ Parameters: dataframe ; str ; str
 Returns: dict mapping strs to ints
 '''
 def getDataCountByState(data, colName, dataToCount):
-    return
+    dictionary = {}
+    if len(colName)!=0 and len(dataToCount)!=0:
+        for index,row in data.iterrows():
+            if row[colName]==dataToCount:
+                if row['state'] not in dictionary:
+                    dictionary[row['state']]=0
+                dictionary[row['state']]+=1
+    if len(colName)==0 and len(dataToCount)==0: 
+        for index,row in data.iterrows():
+            if row['state'] not in dictionary:
+                dictionary[row['state']]=0
+            dictionary[row['state']]+=1
+    return dictionary
 
 
 '''
