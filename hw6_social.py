@@ -84,8 +84,18 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    string = re.findall("#\w+",message)
-    return string
+    hashtags = message.split("#")
+    list_hashtags = []
+    for i in range(1,len(hashtags)):
+        string = ""
+        for j in hashtags[i]:
+            if j in endChars:
+                break
+            else:
+                string+=j
+        string = "#"+string
+        list_hashtags.append(string) 
+    return list_hashtags
 
 
 '''
@@ -202,7 +212,13 @@ Parameters: dataframe
 Returns: dict mapping strs to ints
 '''
 def getHashtagRates(data):
-    return
+    dictionary = {}
+    for index,row in data.iterrows():
+        for i in row['hashtags']:
+            if i not in dictionary:
+                dictionary[i] = 0
+            dictionary[i]+=1
+    return dictionary
 
 
 '''
