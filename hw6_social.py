@@ -246,7 +246,27 @@ Parameters: dataframe ; str
 Returns: float
 '''
 def getHashtagSentiment(data, hashtag):
-    return
+    list_hashtags = []
+    result = ""
+    result_float = 0
+    count=0
+    average=0
+    for index,row in data.iterrows():
+        list_hashtags = findHashtags(row['text'])
+        if hashtag in list_hashtags:
+            count+=1
+            result  = data['sentiment'][index]
+            if result == 'positive':
+                result_float+=1
+            elif result == 'negative':
+                result_float-=1
+            else:
+                continue
+    if count == 0:
+        average=0
+    else:
+        average = result_float/count
+    return average
 
 
 ### PART 3 ###
