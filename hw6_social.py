@@ -9,7 +9,6 @@ import matplotlib
 import pandas
 import nltk
 import hw6_social_tests as test
-import re
 
 project = "Social" # don't edit this
 
@@ -228,7 +227,16 @@ Parameters: dict mapping strs to ints ; int
 Returns: dict mapping strs to ints
 '''
 def mostCommonHashtags(hashtags, count):
-    return
+    dictionary = {}
+    values = sorted(hashtags.values(),reverse=True)
+    i=0
+    while len(dictionary) != count:
+        for key,value in hashtags.items():
+            if values[i]==value and key not in dictionary:
+                dictionary[key]=value
+                i+=1
+                break 
+    return dictionary
 
 
 '''
