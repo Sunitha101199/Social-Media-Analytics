@@ -349,7 +349,7 @@ def graphHashtagSentimentByFrequency(data):
     top50 = mostCommonHashtags(hashtagRates,50)
     hashtags, frequencies, sentimentScores = [], [], []
     for key in top50:
-        if top50[key] not in frequencies: 
+        if top50[key] not in frequencies: #optional step
             hashtags.append(key)
             frequencies.append(top50[key])
             sentimentScores.append(getHashtagSentiment(data,key))
