@@ -247,7 +247,6 @@ Returns: float
 '''
 def getHashtagSentiment(data, hashtag):
     list_hashtags = []
-    result = ""
     result_float = 0
     count=0
     average=0
@@ -255,10 +254,9 @@ def getHashtagSentiment(data, hashtag):
         list_hashtags = findHashtags(row['text'])
         if hashtag in list_hashtags:
             count+=1
-            result  = data['sentiment'][index]
-            if result == 'positive':
+            if data['sentiment'][index] == 'positive':
                 result_float+=1
-            elif result == 'negative':
+            elif data['sentiment'][index] == 'negative':
                 result_float-=1
             else:
                 continue
@@ -299,6 +297,16 @@ Parameters: dict mapping strs to ints ; dict mapping strs to ints ; int ; str
 Returns: None
 '''
 def graphTopNStates(stateCounts, stateFeatureCounts, n, title):
+    topNStates = {}
+    featureDict = {}
+    for i in stateFeatureCounts:
+        featureDict[i] = stateFeatureCounts[i]/stateCounts[i]
+    for key,value in sorted(featureDict.items(), key=lambda item: item[1],reverse=True):
+        if key not in topNStates:
+            topNStates[key]=value
+            if len(topNStates)==n:
+                break
+    graphStateCounts(topNStates,title)
     return
 
 
