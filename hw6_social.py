@@ -279,6 +279,16 @@ Returns: None
 '''
 def graphStateCounts(stateCounts, title):
     import matplotlib.pyplot as plt
+    keys = list(stateCounts.keys())
+    values = list(stateCounts.values())
+    fig = plt.figure(figsize = (10, 5))
+    # creating the bar plot
+    plt.bar(keys, values, color ='blue',width = 0.7)
+    plt.xticks(ticks=list(range(len(keys))), labels=keys, rotation="vertical")
+    plt.xlabel("States")
+    plt.ylabel("Numbers")
+    plt.title(title)
+    plt.show() 
     return
 
 
