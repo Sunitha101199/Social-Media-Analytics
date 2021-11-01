@@ -198,7 +198,6 @@ def testGetHashtagSentiment(df):
 def week2Tests():
     testFindSentiment()
     testAddSentimentColumn()
-
     df = makeDataFrame("data/politicaldata.csv")
     stateDf = makeDataFrame("data/statemappings.csv")
     addColumns(df, stateDf)
